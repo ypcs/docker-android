@@ -18,6 +18,7 @@ RUN adduser --disabled-password --gecos "user,,," user
 USER user
 WORKDIR /home/user
 
+ENV ANDROID_HOME /home/user/android/sdk
 ENV ANDROID_VERSION 28
 ENV ANDROID_BUILD_TOOLS_VERSION 28.0.3
 ENV ANDROID_SDK_TOOLS_VERSION 4333796
