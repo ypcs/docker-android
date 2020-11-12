@@ -32,10 +32,11 @@ RUN mkdir -p android/sdk && \
     unzip sdk-tools.zip && \
     rm sdk-tools.zip
 
-RUN yes |./android/sdk/cmdline-tools/bin/sdkmanager --licenses --sdk_root="${ANDROID_HOME}"
-RUN ./android/sdk/cmdline-tools/bin/sdkmanager --update --sdk_root="${ANDROID_HOME}"
-RUN ./android/sdk/cmdline-tools/bin/sdkmanager --list --sdk_root="${ANDROID_HOME}"
-
-RUN ./android/sdk/cmdline-tools/bin/sdkmanager --sdk_root="${ANDROID_HOME}" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" "platforms;android-${ANDROID_VERSION}" "platform-tools"
-
 ENV PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/bin"
+
+RUN yes |sdkmanager --licenses --sdk_root="${ANDROID_HOME}"
+RUN sdkmanager --update --sdk_root="${ANDROID_HOME}"
+RUN sdkmanager --list --sdk_root="${ANDROID_HOME}"
+
+RUN sdkmanager --sdk_root="${ANDROID_HOME}" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" "platforms;android-${ANDROID_VERSION}" "platform-tools"
+
